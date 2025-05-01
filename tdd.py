@@ -16,9 +16,14 @@ def tdd(tdd_file):
                 print(line)
                 line = line.strip()
                 if line:
-                    tag[line.split[1][:-1]] = line.split[2]
-                    if line.split[1][:-1] == 'CONFIG_WORD':
+                    try:
+                        tag[line.split()[1][:-1]] = line.split()[2]
+                        if line.split()[1][:-1] == 'CONFIG_WORD':
+                            map.append(tag)
+                    except Exception as e:
                          map.append(tag)
+                         print(f"tag appended: {e}")
+                print(map)
                      
 if __name__ == "__main__":
     tdd(sys.argv[2])
