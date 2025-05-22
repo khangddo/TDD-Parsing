@@ -1,5 +1,9 @@
 import sys
 import matplotlib.pyplot as vis
+<<<<<<< HEAD
+=======
+import cvs
+>>>>>>> 4255737 (testing cvs parser output)
 
 def visual(timestamp_map):
     map = timestamp_map
@@ -48,4 +52,16 @@ def visual(timestamp_map):
     vis.ylabel("y")
     vis.tiltle("Reader Signal Strength")
     vis.show()
+<<<<<<< HEAD
     
+=======
+
+def cvs_parser(cvs_file):
+    with open(cvs_file, newline = '') as cvs:
+        reader = cvs.DictReader(cvs)
+        for line in reader:
+            print(line)
+                     
+if __name__ == "__main__":
+    cvs_parser(sys.argv[2])
+>>>>>>> 4255737 (testing cvs parser output)
