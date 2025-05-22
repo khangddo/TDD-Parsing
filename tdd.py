@@ -1,15 +1,9 @@
 import sys
 import matplotlib.pyplot as vis
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import cvs
->>>>>>> 4255737 (testing cvs parser output)
-=======
 import pandas as pan
 import csv
 import numpy as np
->>>>>>> 8e5b851 (updated)
 
 def visual(timestamp_map):
     map = timestamp_map
@@ -67,9 +61,6 @@ def time_vs_rssi(list):
     vis.ylabel("RSSI")
     vis.title("Reader Signal Strength")
     vis.show()
-<<<<<<< HEAD
-    
-=======
 
 def time_vs_phase(list):
     # Reader Signal Strength
@@ -99,11 +90,7 @@ def cvs_parser(csv_file):
     return list_of_rows
                      
 if __name__ == "__main__":
-<<<<<<< HEAD
     cvs_parser(sys.argv[2])
->>>>>>> 4255737 (testing cvs parser output)
-=======
     new_reader = cvs_parser(sys.argv[2])
     #time_vs_rssi(new_reader)
     time_vs_phase(new_reader)
->>>>>>> 8e5b851 (updated)
