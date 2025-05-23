@@ -5,47 +5,46 @@ import pandas as pan
 import csv
 import numpy as np
 
-def visual(timestamp_map):
-    map = timestamp_map
+# def visual(timestamp_map):
+#     map = timestamp_map
 
-    # Tag Latency
-    # x = timestamp (us) (list)
-    # y = response duration (us) (list)
-    vis.plot(x, y)
-    vis.xlabel("x")
-    vis.ylabel("y")
-    vis.tiltle("Tag Latency")
-    vis.show()
+#     # Tag Latency
+#     # x = timestamp (us) (list)
+#     # y = response duration (us) (list)
+#     vis.plot(x, y)
+#     vis.xlabel("x")
+#     vis.ylabel("y")
+#     vis.tiltle("Tag Latency")
+#     vis.show()
     
-    # GEN2 State Transitions (bar chart)
-    # x = timestamp (us) (list)
-    # y = GEN2_STATE (list)
-    vis.bar(x, y)
-    vis.xlabel("x")
-    vis.ylabel("y")
-    vis.tiltle("GEN2 State Transitions")
-    vis.show()
+#     # GEN2 State Transitions (bar chart)
+#     # x = timestamp (us) (list)
+#     # y = GEN2_STATE (list)
+#     vis.bar(x, y)
+#     vis.xlabel("x")
+#     vis.ylabel("y")
+#     vis.tiltle("GEN2 State Transitions")
+#     vis.show()
     
-    # RX_BIT_LEN Overtime
-    # x = timestamp (us) (list)
-    # y = RX_BIT_LEN (list)
-    vis.plot(x, y)
-    vis.xlabel("x")
-    vis.ylabel("y")
-    vis.tiltle("RX_BIT_LEN Overtime")
-    vis.show()
+#     # RX_BIT_LEN Overtime
+#     # x = timestamp (us) (list)
+#     # y = RX_BIT_LEN (list)
+#     vis.plot(x, y)
+#     vis.xlabel("x")
+#     vis.ylabel("y")
+#     vis.tiltle("RX_BIT_LEN Overtime")
+#     vis.show()
     
-    # Tag Reply to Reader Next Command Duration
-    # x = timestamp (us) (list)
-    # y = duration (us) (list)
-    vis.plot(x, y)
-    vis.xlabel("x")
-    vis.ylabel("y")
-    vis.tiltle("Tag Reply to Reader Next Command Duration")
-    vis.show()
-    
+#     # Tag Reply to Reader Next Command Duration
+#     # x = timestamp (us) (list)
+#     # y = duration (us) (list)
+#     vis.plot(x, y)
+#     vis.xlabel("x")
+#     vis.ylabel("y")
+#     vis.tiltle("Tag Reply to Reader Next Command Duration")
+#     vis.show()
 
-def time_vs_rssi(list):
+def rssi_vs_time(list, axis):
     # Reader Signal Strength
     x = []
     y = []
@@ -56,13 +55,10 @@ def time_vs_rssi(list):
             y.append(rssi)
     # x = timestamp (us) (list)
     # y = Convertes RSSI (dBm) value to power (Watt) (list)
-    vis.plot(x, y)
-    vis.xlabel("Timestamp")
-    vis.ylabel("RSSI")
-    vis.title("Reader Valid Signal Strength")
-    vis.show()
+    axis[1].plot(x, y)
+    axis[1].set_title("RSSI vs Time")
 
-def time_vs_phase(list):
+def phase_vs_time(list, asix):
     # Reader Signal Strength
     x = []
     y = []
@@ -73,11 +69,9 @@ def time_vs_phase(list):
             y.append(phase)
     # x = timestamp (us) (list)
     # y = Convertes RSSI (dBm) value to power (Watt) (list)
-    vis.plot(x, y)
-    vis.xlabel("Timestamp")
-    vis.ylabel("Phase")
-    vis.title("Phase vs Time")
-    vis.show()
+    axis[0].plot(x, y)
+    axis[0].set_title("Phase vs Time")
+
 
 def cvs_parser(csv_file):
     list_of_rows = []
@@ -92,5 +86,7 @@ def cvs_parser(csv_file):
 if __name__ == "__main__":
     cvs_parser(sys.argv[2])
     new_reader = cvs_parser(sys.argv[2])
-    time_vs_rssi(new_reader)
-    #time_vs_phase(new_reader)
+    figure, axis = vis.subplots(2, 1)
+    rssi_vs_time(new_reader, axis)
+    phase_vs_time(new_reader, axis)
+    vis.show()
